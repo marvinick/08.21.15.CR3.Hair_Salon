@@ -11,9 +11,9 @@
                 $this->id = $id;
           }
 
-          function setStyler($new_name)
+          function setName($new_name)
           {
-                $this->styler = (string) $new_name;
+                $this->name = (string) $new_name;
           }
 
           function getName()
@@ -75,7 +75,13 @@
                   array_push($clients, $new_client);
               }
               return $clients;
-}
+          }
+
+          function update($new_name)
+          {
+              $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
+              $this->setName($new_name);
+          }
 
     }
 ?>
