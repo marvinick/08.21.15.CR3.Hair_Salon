@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Stylist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h3>Add new stylist</h3>
+
+    <form action="/stylists" method="post">
+        <input id="name" name="name" type="text" placeholder="name">
+
+        <button type="submit" class="btn-primary btn-lg">Add Stylist</button>
+    </form>
+
+    {% if stylists is not empty %}
+        <p>Available Stylists</p>
+        <ul>
+            {% for stylist in stylists %}
+                <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+      <p>Please add a stylist!</p>
+    {% endif %}
+</div>
+</body>
+</html>
