@@ -1,35 +1,49 @@
 <html>
 <head>
-    <title>Clients</title>
+    <title>Hair Salon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-    <h1>{{ stylist.getName }}</h1>
-    <p><a href="/stylists/{{ stylist.getId }}/edit">Edit</a></p>
 
-    {% if clients is not empty %}
-        <p>Here are the clients</p>
-        <ul>
-            {% for client in clients %}
-                <li>{{ client.getPatron }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href='/'>Baldie Salon</a>
+      </div>
+    </div>
+</nav>
 
-    <h4>Add a client</h4>
+    <div class="container">
+        <h1>{{ stylist.getName }}</h1>
+        <h4><a href="/stylists/{{ stylist.getId }}/edit">Edit</a></h4>
+        {% if clients is not empty %}
+            <h4>Here are the clients</h4>
+            <ul>
+                {% for client in clients %}
+                    <li>{{ client.getPatron }}</li>
+                    <p><a href="/clients/{{ client.getId }}/edit">Edit</a></p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <hr>
+        <h4>Add a client</h4>
 
-    <form action='/clients' method='post'>
-        <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+        <form action='/clients' method='post'>
+            <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
 
-        <input id='patron' name='patron' type='text' placeholder="enter client's name">
+            <input id='patron' name='patron' type='text' placeholder="enter client's name">
 
-        <button type='submit'>Add</button>
-    </form>
-
-    <p><a href='/'>Home</a></p>
-</div>
+            <button type='submit' class="btn-primary btn-lg">Add</button>
+        </form>
+    </div>
 </body>
 </html>

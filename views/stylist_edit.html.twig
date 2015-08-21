@@ -1,16 +1,40 @@
-<h1>Update {{ stylist.getName }} </h1>
+<html>
+    <title>Stylist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="styles.css">
+<head>
+</head>
+<body>
 
-<form action="/stylists/{{ stylist.getId }}" method="post">
-  <input name="_method" type="hidden" value="patch">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href='/'>Baldie Salon</a>
+      </div>
+    </div>
+  </nav>
 
+  <div class="container">
+    <h1>Update {{ stylist.getName }} </h1>
 
-  <input id="name" name="name" type="text" placeholder="rename">
+    <form action="/stylists/{{ stylist.getId }}" method="post">
+      <input name="_method" type="hidden" value="patch">
+      <input id="name" name="name" type="text" placeholder="rename">
+      <button type="submit" class="btn-success btn-lg">Update</button>
+    </form>
 
-  <button type="submit">Update</button>
-</form>
-
-<form action="/stylists/{{ stylist.getId }}" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete</button>
-</form>
+    <form action="/stylists/{{ stylist.getId }}" method="post">
+      <input name="_method" type="hidden" value="delete">
+      <button type="submit" class="btn-danger btn-lg">Delete</button>
+    </form>
+  </div>
+</body>
+</html>
