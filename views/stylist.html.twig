@@ -8,6 +8,7 @@
 <body>
 <div class="container">
     <h1>{{ stylist.getName }}</h1>
+    <p><a href="/stylists/{{ stylist.getId }}/edit">Edit</a></p>
 
     {% if clients is not empty %}
         <p>Here are the clients</p>
