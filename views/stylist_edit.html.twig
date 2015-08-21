@@ -8,3 +8,9 @@
 
   <button type="submit">Update</button>
 </form>
+
+<form action="/stylists/{{ stylist.getId }}" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete</button>
+</form>
