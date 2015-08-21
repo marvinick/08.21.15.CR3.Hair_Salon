@@ -77,5 +77,13 @@
               $GLOBALS['DB']->exec("UPDATE clients SET patron = '{$new_patron}' WHERE id = {$this->getId()};");
               $this->setPatron($new_patron);
           }
+
+          function delete()
+          {
+              $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
+              $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
+          }
+
+
     }
 ?>

@@ -167,7 +167,7 @@
               $patron = "Rosie";
               $stylist_id = $test_stylist->getId();
               $test_client = new Client($patron, $id, $stylist_id );
-              $test_stylist->save();
+              $test_client->save();
 
               $new_patron = "Donald";
 
@@ -176,6 +176,32 @@
 
               //Assert
               $this->assertEquals("Donald", $test_stylist->getName());
+          }
+
+        function testDelete()
+          {
+              //Arrange
+              $name = "Donald";
+              $id = null;
+              $test_stylist = new Stylist($name, $id);
+              $test_stylist->save();
+
+              $patron = "Rosie";
+              $stylist_id = $test_stylist->getId();
+              $test_client = new Client($patron, $id, $stylist_id );
+              $test_client->save();
+
+              $patron2 = "MissUSA";
+              $stylist_id = $test_stylist->getId();
+              $test_client2 = new Client($patron2, $id, $stylist_id );
+              $test_client2->save();
+
+
+              //Act
+              $test_client->delete();
+
+              //Assert
+              $this->assertEquals([$test_client2], Client::getAll());
           }
 
         function testDeleteStylistClients()

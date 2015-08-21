@@ -83,26 +83,6 @@
               $this->setName($new_name);
           }
 
-          function testDelete()
-          {
-              //Arrange
-              $name = "Donald";
-              $id = null;
-              $test_stylist = new Stylist($name, $id);
-              $test_stylist->save();
-
-              $name2 = "Rosie";
-              $test_stylist2 = new Stylist($name2, $id);
-              $test_stylist2->save();
-
-
-              //Act
-              $test_stylist->delete();
-
-              //Assert
-              $this->assertEquals([$test_stylist2], Category::getAll());
-          }
-
           function delete()
           {
               $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
