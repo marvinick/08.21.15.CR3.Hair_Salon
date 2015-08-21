@@ -63,5 +63,19 @@
               return $found_stylist;
           }
 
+          function getClients()
+          {
+              $clients = Array();
+              $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()};");
+              foreach($returned_clients as $client) {
+                  $patron = $client['patron'];
+                  $id = $client['id'];
+                  $stylist_id = $client['stylist_id'];
+                  $new_client = new Client($patron, $id, $stylist_id);
+                  array_push($clients, $new_client);
+              }
+              return $clients;
+}
+
     }
 ?>

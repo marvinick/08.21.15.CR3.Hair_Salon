@@ -3,12 +3,15 @@
     class Client
     {
           private $patron;
+          private $stylist_id;
           private $id;
 
-          function __construct($patron, $id = null)
+
+          function __construct($patron, $id = null, $stylist_id)
           {
                 $this->patron = $patron;
                 $this->id = $id;
+                $this->stylist_id = $stylist_id;
           }
 
           function setPatron($new_patron)
@@ -26,9 +29,14 @@
               return $this->id;
           }
 
+          function getStylistId()
+          {
+              return $this->stylist_id;
+          }
+
           function save()
           {
-              $GLOBALS['DB']->exec("INSERT INTO clients (patron) VALUES ('{$this->getPatron()}');");
+              $GLOBALS['DB']->exec("INSERT INTO clients (patron, stylist_id) VALUES ('{$this->getPatron()}', {$this->getStylistId()})");
               $this->id = $GLOBALS['DB']->lastInsertId();
           }
 
@@ -39,7 +47,8 @@
             foreach($returned_clients as $client) {
                 $patron = $client['patron'];
                 $id = $client['id'];
-                $new_client = new Client($patron, $id);
+                $stylist_id = $client['stylist_id'];
+                $new_client = new Client($patron, $id, $stylist_id);
                 array_push($clients, $new_client);
             }
             return $clients;
