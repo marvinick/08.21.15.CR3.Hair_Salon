@@ -156,6 +156,28 @@
             $this->assertEquals($test_client, $result);
         }
 
+        function testUpdate()
+          {
+              //Arrange
+              $name = "Donald";
+              $id = null;
+              $test_stylist = new Stylist($name, $id);
+              $test_stylist->save();
+
+              $patron = "Rosie";
+              $stylist_id = $test_stylist->getId();
+              $test_client = new Client($patron, $id, $stylist_id );
+              $test_stylist->save();
+
+              $new_patron = "Donald";
+
+              //Act
+              $test_stylist->update($new_patron);
+
+              //Assert
+              $this->assertEquals("Donald", $test_stylist->getName());
+          }
+
         function testDeleteStylistClients()
         {
             //Arrange

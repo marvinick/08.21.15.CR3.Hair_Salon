@@ -71,5 +71,11 @@
               }
               return $found_client;
           }
+
+          function update($new_name)
+          {
+              $GLOBALS['DB']->exec("UPDATE clients SET patron = '{$new_patron}' WHERE id = {$this->getId()};");
+              $this->setPatron($new_patron);
+          }
     }
 ?>
