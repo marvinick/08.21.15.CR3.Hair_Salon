@@ -1,24 +1,25 @@
 <?php
-
     class Stylist
     {
           private $name;
           private $id;
-
           function __construct($name, $id = null)
           {
                 $this->name = $name;
                 $this->id = $id;
           }
-
           function setName($new_name)
           {
                 $this->name = (string) $new_name;
           }
-
           function getName()
           {
                 return ($this->name);
+          }
+
+          function setId($new_id)
+          {
+              $this->id = $new_id;
           }
 
           function getId()
@@ -29,7 +30,8 @@
           function save()
           {
               $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getName()}');");
-              $this->id = $GLOBALS['DB']->lastInsertId();
+              $result_id = $GLOBALS['DB']->lastInsertId();
+              $this->setId($result_id);
           }
 
           static function getAll()
@@ -44,12 +46,10 @@
             }
             return $stylists;
           }
-
           static function deleteAll()
           {
               $GLOBALS['DB']->exec("DELETE FROM stylists;");
           }
-
           static function find($search_id)
           {
               $found_stylist = null;
@@ -62,7 +62,6 @@
               }
               return $found_stylist;
           }
-
           function getClients()
           {
               $clients = Array();
@@ -76,18 +75,15 @@
               }
               return $clients;
           }
-
           function update($new_name)
           {
               $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
               $this->setName($new_name);
           }
-
           function delete()
           {
               $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
               $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
           }
-
     }
 ?>

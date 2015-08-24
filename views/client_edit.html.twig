@@ -25,24 +25,26 @@
       </div>
     </nav>
 
-<div class="container">
-  <h1>Update {{ client.getPatron }} </h1>
+  <div class="container">
+    <h1>Update {{ client.getPatron }} </h1>
 
-  <form action="/clients/{{ client.getId }}" method="post">
-    <input name="_method" type="hidden" value="patch">
-    <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist_id }}'>
+    <form action="/clients/{{ client.getId }}" method="post">
+      <input name="_method" type="hidden" value="patch">
 
-    <input id="patron" name="patron" type="text" placeholder="rename">
+      <label for="patron">Rename the client:</label>
+      <input id="patron" name="patron" type="text" placeholder="rename">
 
-    <button type="submit" btn class="btn-warning btn-lg">Update</button>
-  </form>
+      <button type="submit" btn class="btn-warning btn-lg">Update</button>
+    </form>
 
-  <form action='/delete_clients' method='post'>
-      <button type='submit' class="btn-danger btn-lg">Clear</button>
-  </form>
-</div>
+    <form action="/clients/{{ client.getId }}" method="post">
+        <input name="_method" type="hidden" value="delete">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
 </body>
 </html>
+
 
 
 

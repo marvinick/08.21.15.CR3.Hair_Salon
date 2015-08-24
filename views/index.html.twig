@@ -31,6 +31,7 @@
         <button type="submit" class="btn-primary btn-lg">Add Stylist</button>
     </form>
 
+    <hr noshade size=4 width=100% align=left>
     {% if stylists is not empty %}
         <p>Available Stylists</p>
         <ul>
@@ -41,6 +42,10 @@
     {% else %}
       <p>Please add a stylist!</p>
     {% endif %}
+
+    <form action="/delete_stylists" method="post">
+        <button type="submit" class="btn btn-danger btn-lg">Clear List</button>
+    </form>
 </div>
 </body>
 </html>

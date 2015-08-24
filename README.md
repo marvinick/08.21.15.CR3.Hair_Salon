@@ -11,6 +11,13 @@ This is an App for a hair salon. The owner should be able to add a list of their
 Clone repository from GitHub.
 Run $ composer install.
 
+##Setup Database on MySQL
+
+CREATE DATABASE hair_salon;
+USE hair_salon;
+CREATE TABLE stylists (name VARCHAR(255), id serial PRIMARY KEY);
+CREATE TABLE clients (patron VARCHAR(255), id serial PRIMARY KEY, stylist_id INT);
+
 ##Technologies Used
 
 PHP, PHPUnit,  Html, CSS, Silex, Twig, Bootstrap

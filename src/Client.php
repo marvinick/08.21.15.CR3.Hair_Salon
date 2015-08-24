@@ -24,9 +24,20 @@
                 return ($this->patron);
           }
 
+          function setId($new_id)
+          {
+              $this->id = $new_id;
+          }
+
+
           function getId()
           {
               return $this->id;
+          }
+
+          function setStylistId($new_stylist_id)
+          {
+              $this->stylist_id = $new_stylist_id;
           }
 
           function getStylistId()
@@ -37,7 +48,9 @@
           function save()
           {
               $GLOBALS['DB']->exec("INSERT INTO clients (patron, stylist_id) VALUES ('{$this->getPatron()}', {$this->getStylistId()})");
-              $this->id = $GLOBALS['DB']->lastInsertId();
+              $result_id = $GLOBALS['DB']->lastInsertId();
+              $this->setId($result_id);
+
           }
 
           static function getAll()
